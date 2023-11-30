@@ -7,28 +7,62 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A824B0302AF18F500061A2ED /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824B02F2AF18F500061A2ED /* Settings.swift */; };
-		A85630192AEC0C2800937D95 /* SkinColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85630182AEC0C2800937D95 /* SkinColorPicker.swift */; };
-		A856301B2AEC0CBB00937D95 /* HairAndHotColdPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A856301A2AEC0CBB00937D95 /* HairAndHotColdPicker.swift */; };
-		A88A8F952AF1402300FC1CCB /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88A8F942AF1402300FC1CCB /* Homepage.swift */; };
+		A824B0302AF18F500061A2ED /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824B02F2AF18F500061A2ED /* SettingsView.swift */; };
+		A833EDEB2AFA895E00F4A364 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EDEA2AFA895E00F4A364 /* User.swift */; };
+		A83774FE2B125D9C008E40EE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83774FD2B125D9C008E40EE /* Message.swift */; };
+		A83FA4B02AFD2C380070A4F3 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83FA4AF2AFD2C380070A4F3 /* Test.swift */; };
+		A847EFB32B02F95D004C2200 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A847EFB22B02F95D004C2200 /* Location.swift */; };
+		A84B3EB42B181C05002A8B1C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B3EB32B181C05002A8B1C /* ImagePicker.swift */; };
+		A84B3EB62B181FCD002A8B1C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B3EB52B181FCD002A8B1C /* UIImageExtension.swift */; };
+		A85630192AEC0C2800937D95 /* WelcomeWizardView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85630182AEC0C2800937D95 /* WelcomeWizardView2.swift */; };
+		A856301B2AEC0CBB00937D95 /* WelcomeWizardView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A856301A2AEC0CBB00937D95 /* WelcomeWizardView1.swift */; };
+		A85F83942B1552E900637335 /* SkinColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F83932B1552E900637335 /* SkinColor.swift */; };
+		A85F83962B15573700637335 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F83952B15573700637335 /* SampleData.swift */; };
+		A86CE72D2AFD7630007FA521 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86CE72C2AFD7630007FA521 /* Weather.swift */; };
+		A86CE72F2AFD7A08007FA521 /* TempRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86CE72E2AFD7A08007FA521 /* TempRange.swift */; };
+		A86CE7312AFD829C007FA521 /* WeatherStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86CE7302AFD829C007FA521 /* WeatherStruct.swift */; };
+		A86CE7332AFD85D1007FA521 /* DataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86CE7322AFD85D1007FA521 /* DataViewModel.swift */; };
+		A87151322B0C2B4600ECAD65 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87151312B0C2B4600ECAD65 /* LocationViewModel.swift */; };
+		A87151342B0C2B7600ECAD65 /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87151332B0C2B7600ECAD65 /* LocationSearchService.swift */; };
+		A88A8F952AF1402300FC1CCB /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88A8F942AF1402300FC1CCB /* HomepageView.swift */; };
+		A89013132B095A2800CDE0E8 /* ImageWithSkinBehind.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89013122B095A2800CDE0E8 /* ImageWithSkinBehind.swift */; };
+		A8D7FA332AF9407C004956C2 /* SolidTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D7FA322AF9407C004956C2 /* SolidTextButton.swift */; };
+		A8D7FA352AF94541004956C2 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D7FA342AF94541004956C2 /* LocationView.swift */; };
 		A8DB006C2AEAFC9600617FD4 /* RaincoatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DB006B2AEAFC9600617FD4 /* RaincoatApp.swift */; };
-		A8DB006E2AEAFC9600617FD4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DB006D2AEAFC9600617FD4 /* ContentView.swift */; };
 		A8DB00702AEAFC9800617FD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8DB006F2AEAFC9800617FD4 /* Assets.xcassets */; };
 		A8DB00732AEAFC9800617FD4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8DB00722AEAFC9800617FD4 /* Preview Assets.xcassets */; };
 		A8DB007E2AEB3FAC00617FD4 /* SolidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DB007D2AEB3FAC00617FD4 /* SolidButton.swift */; };
+		A8DDA7ED2B168254005305C0 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DDA7EC2B168254005305C0 /* Router.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A824B02F2AF18F500061A2ED /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		A85630182AEC0C2800937D95 /* SkinColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinColorPicker.swift; sourceTree = "<group>"; };
-		A856301A2AEC0CBB00937D95 /* HairAndHotColdPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairAndHotColdPicker.swift; sourceTree = "<group>"; };
-		A88A8F942AF1402300FC1CCB /* Homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
+		A824B02F2AF18F500061A2ED /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A833EDEA2AFA895E00F4A364 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A83774FD2B125D9C008E40EE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		A83FA4AF2AFD2C380070A4F3 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		A847EFB22B02F95D004C2200 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		A84B3EB32B181C05002A8B1C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		A84B3EB52B181FCD002A8B1C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		A85630182AEC0C2800937D95 /* WelcomeWizardView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeWizardView2.swift; sourceTree = "<group>"; };
+		A856301A2AEC0CBB00937D95 /* WelcomeWizardView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeWizardView1.swift; sourceTree = "<group>"; };
+		A85F83932B1552E900637335 /* SkinColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinColor.swift; sourceTree = "<group>"; };
+		A85F83952B15573700637335 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		A86CE72C2AFD7630007FA521 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		A86CE72E2AFD7A08007FA521 /* TempRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempRange.swift; sourceTree = "<group>"; };
+		A86CE7302AFD829C007FA521 /* WeatherStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStruct.swift; sourceTree = "<group>"; };
+		A86CE7322AFD85D1007FA521 /* DataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewModel.swift; sourceTree = "<group>"; };
+		A87151312B0C2B4600ECAD65 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		A87151332B0C2B7600ECAD65 /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
+		A88A8F942AF1402300FC1CCB /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageView.swift; sourceTree = "<group>"; };
+		A89013122B095A2800CDE0E8 /* ImageWithSkinBehind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithSkinBehind.swift; sourceTree = "<group>"; };
+		A8D7FA322AF9407C004956C2 /* SolidTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidTextButton.swift; sourceTree = "<group>"; };
+		A8D7FA342AF94541004956C2 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		A8DB00682AEAFC9600617FD4 /* Raincoat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Raincoat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8DB006B2AEAFC9600617FD4 /* RaincoatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaincoatApp.swift; sourceTree = "<group>"; };
-		A8DB006D2AEAFC9600617FD4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A8DB006F2AEAFC9800617FD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8DB00722AEAFC9800617FD4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A8DB007D2AEB3FAC00617FD4 /* SolidButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidButton.swift; sourceTree = "<group>"; };
+		A8DDA7EC2B168254005305C0 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +76,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A833EDE52AFA830A00F4A364 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A833EDEA2AFA895E00F4A364 /* User.swift */,
+				A86CE72C2AFD7630007FA521 /* Weather.swift */,
+				A86CE72E2AFD7A08007FA521 /* TempRange.swift */,
+				A86CE7302AFD829C007FA521 /* WeatherStruct.swift */,
+				A86CE7322AFD85D1007FA521 /* DataViewModel.swift */,
+				A847EFB22B02F95D004C2200 /* Location.swift */,
+				A89013122B095A2800CDE0E8 /* ImageWithSkinBehind.swift */,
+				A87151312B0C2B4600ECAD65 /* LocationViewModel.swift */,
+				A87151332B0C2B7600ECAD65 /* LocationSearchService.swift */,
+				A83774FD2B125D9C008E40EE /* Message.swift */,
+				A85F83932B1552E900637335 /* SkinColor.swift */,
+				A84B3EB32B181C05002A8B1C /* ImagePicker.swift */,
+				A84B3EB52B181FCD002A8B1C /* UIImageExtension.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A8DB005F2AEAFC9600617FD4 = {
 			isa = PBXGroup;
 			children = (
@@ -61,10 +115,10 @@
 		A8DB006A2AEAFC9600617FD4 /* Raincoat */ = {
 			isa = PBXGroup;
 			children = (
+				A833EDE52AFA830A00F4A364 /* Models */,
 				A8DB007A2AEB068900617FD4 /* Components */,
 				A8DB00792AEB068200617FD4 /* Pages */,
 				A8DB006B2AEAFC9600617FD4 /* RaincoatApp.swift */,
-				A8DB006D2AEAFC9600617FD4 /* ContentView.swift */,
 				A8DB006F2AEAFC9800617FD4 /* Assets.xcassets */,
 				A8DB00712AEAFC9800617FD4 /* Preview Content */,
 			);
@@ -82,10 +136,13 @@
 		A8DB00792AEB068200617FD4 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				A85630182AEC0C2800937D95 /* SkinColorPicker.swift */,
-				A856301A2AEC0CBB00937D95 /* HairAndHotColdPicker.swift */,
-				A88A8F942AF1402300FC1CCB /* Homepage.swift */,
-				A824B02F2AF18F500061A2ED /* Settings.swift */,
+				A85630182AEC0C2800937D95 /* WelcomeWizardView2.swift */,
+				A856301A2AEC0CBB00937D95 /* WelcomeWizardView1.swift */,
+				A88A8F942AF1402300FC1CCB /* HomepageView.swift */,
+				A824B02F2AF18F500061A2ED /* SettingsView.swift */,
+				A8D7FA342AF94541004956C2 /* LocationView.swift */,
+				A83FA4AF2AFD2C380070A4F3 /* Test.swift */,
+				A8DDA7EC2B168254005305C0 /* Router.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -94,6 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				A8DB007D2AEB3FAC00617FD4 /* SolidButton.swift */,
+				A8D7FA322AF9407C004956C2 /* SolidTextButton.swift */,
+				A85F83952B15573700637335 /* SampleData.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -168,13 +227,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8DB006E2AEAFC9600617FD4 /* ContentView.swift in Sources */,
-				A85630192AEC0C2800937D95 /* SkinColorPicker.swift in Sources */,
+				A8DDA7ED2B168254005305C0 /* Router.swift in Sources */,
+				A85630192AEC0C2800937D95 /* WelcomeWizardView2.swift in Sources */,
+				A85F83962B15573700637335 /* SampleData.swift in Sources */,
+				A86CE7312AFD829C007FA521 /* WeatherStruct.swift in Sources */,
+				A847EFB32B02F95D004C2200 /* Location.swift in Sources */,
+				A86CE72F2AFD7A08007FA521 /* TempRange.swift in Sources */,
 				A8DB006C2AEAFC9600617FD4 /* RaincoatApp.swift in Sources */,
-				A88A8F952AF1402300FC1CCB /* Homepage.swift in Sources */,
-				A824B0302AF18F500061A2ED /* Settings.swift in Sources */,
-				A856301B2AEC0CBB00937D95 /* HairAndHotColdPicker.swift in Sources */,
+				A88A8F952AF1402300FC1CCB /* HomepageView.swift in Sources */,
+				A824B0302AF18F500061A2ED /* SettingsView.swift in Sources */,
+				A83774FE2B125D9C008E40EE /* Message.swift in Sources */,
+				A87151322B0C2B4600ECAD65 /* LocationViewModel.swift in Sources */,
+				A8D7FA332AF9407C004956C2 /* SolidTextButton.swift in Sources */,
+				A85F83942B1552E900637335 /* SkinColor.swift in Sources */,
+				A84B3EB42B181C05002A8B1C /* ImagePicker.swift in Sources */,
+				A83FA4B02AFD2C380070A4F3 /* Test.swift in Sources */,
+				A856301B2AEC0CBB00937D95 /* WelcomeWizardView1.swift in Sources */,
+				A87151342B0C2B7600ECAD65 /* LocationSearchService.swift in Sources */,
+				A89013132B095A2800CDE0E8 /* ImageWithSkinBehind.swift in Sources */,
+				A86CE72D2AFD7630007FA521 /* Weather.swift in Sources */,
 				A8DB007E2AEB3FAC00617FD4 /* SolidButton.swift in Sources */,
+				A833EDEB2AFA895E00F4A364 /* User.swift in Sources */,
+				A8D7FA352AF94541004956C2 /* LocationView.swift in Sources */,
+				A86CE7332AFD85D1007FA521 /* DataViewModel.swift in Sources */,
+				A84B3EB62B181FCD002A8B1C /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +387,7 @@
 				DEVELOPMENT_TEAM = 842DN58H4A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Raincoat would like to use your camera to take a picture";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -340,6 +417,7 @@
 				DEVELOPMENT_TEAM = 842DN58H4A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Raincoat would like to use your camera to take a picture";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

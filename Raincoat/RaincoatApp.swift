@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct RaincoatApp: App {
+    
+    // @State private var user = User()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WelcomeWizardView1() //.environment(user)
+                .modelContainer(for: [User.self])
         }
     }
 }

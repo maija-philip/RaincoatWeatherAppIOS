@@ -34,12 +34,12 @@ struct SolidButton: View {
                     .padding(.horizontal)
                 
             } // HStack
-            .foregroundColor(buttonLevel == .primary ? Color("OnTheme") : Color("Theme"))
+            .foregroundStyle(buttonLevel == .primary ? Color("OnTheme") : Color("Theme"))
             .fontWeight(.bold)
             .padding(EdgeInsets(top: 15.0, leading: 25.0, bottom: 15.0, trailing: 25.0))
             .background(
                 Capsule()
-                    .foregroundColor(Color("Theme"))
+                    .foregroundStyle(Color("Theme"))
                     .opacity(backgroundOpacity)
             )
         }) // Button
