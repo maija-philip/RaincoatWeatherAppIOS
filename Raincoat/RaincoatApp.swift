@@ -14,7 +14,7 @@ struct RaincoatApp: App {
     
     var body: some Scene {
         WindowGroup {
-            WelcomeWizardView1() //.environment(user)
+            Router() //.environment(user)
                 .modelContainer(for: [User.self])
         }
     }

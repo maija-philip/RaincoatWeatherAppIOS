@@ -49,7 +49,7 @@ struct HomepageView: View {
                             }
                             
                             
-                            WeatherDataSection(weather: dataModel.data ?? Weather())
+                            WeatherDataSection(weather: dataModel.data ?? Weather(), user: user[0])
                             
                             
                             HStack {
@@ -104,6 +104,7 @@ struct HomepageView: View {
 struct WeatherDataSection: View {
     
     @State var weather: Weather
+    @State var user: User
     
     var body: some View {
         HStack(alignment: .top) {
@@ -137,7 +138,7 @@ struct WeatherDataSection: View {
                 Text("\(weather.rainChance)%")
                     .font(.title)
                     .foregroundStyle(Color("OnSurface"))
-                Text("Chance of\nRain")
+                Text(weather.willSnow(user: user) ? "Chance of\nSnow" : "Chance of\nRain")
                     .foregroundStyle(Color("OnSurface"))
                     .multilineTextAlignment(.center)
             } // VStack - humidy

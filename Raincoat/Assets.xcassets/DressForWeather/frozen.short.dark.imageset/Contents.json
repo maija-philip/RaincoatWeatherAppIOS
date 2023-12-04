@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "frozen.long-2.png",
+      "filename" : "frozen.long.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "frozen.long-2@2x.png",
+      "filename" : "frozen.long@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "frozen.long-2@3x.png",
+      "filename" : "frozen.long@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

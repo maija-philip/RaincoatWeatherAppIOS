@@ -33,7 +33,7 @@ struct WeatherListStruct: Codable {
  API call notes
  
  need lat and long of location
- cnt = 1 // only show one timestamp
+ cnt = 8 // show 24hr worth of data
  mode = metric or imperial
  
  */

@@ -8,10 +8,12 @@
 import Foundation
 import SwiftUI
 
+/// keep track of the type of button requested
 enum ButtonLevel {
     case primary, secondary, tertiary
 }
 
+/// creates a custom button to look like the google material ui button that comes in 3 varieties, all in a button element
 struct SolidButton: View {
     
     @State var text: String
@@ -20,6 +22,7 @@ struct SolidButton: View {
 
     var body: some View {
         
+        /// the opacity changes depending on which type of button it is.
         let backgroundOpacity = getBackgroundOpacity()
 
 
@@ -45,6 +48,7 @@ struct SolidButton: View {
         }) // Button
     } // View
     
+    /// make the button background invisible, lighter, or fully there depending on button type
     private func getBackgroundOpacity() -> Double {
         var backgroundOpacity = 0.0
         

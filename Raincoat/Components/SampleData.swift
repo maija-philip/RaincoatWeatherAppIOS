@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import SwiftData
 
+/// sample user data for the preview
 class SampleData {
     static var contents: [User] {
         [

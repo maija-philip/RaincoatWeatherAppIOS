@@ -21,6 +21,10 @@ struct LocationView: View {
     @StateObject private var viewModel = LocationViewModel()
     @State private var chosenLocation: Location? = nil
     
+    
+    // param
+    @State var fromSettings: Bool
+    
     var body: some View {
         
         Color("Surface")
@@ -76,15 +80,25 @@ struct LocationView: View {
                     
                     Spacer()
                     
-                    Button(action: {
-                        if (chosenLocation != nil) {
+                    if fromSettings {
+                        Button(action: {
+                            if (chosenLocation != nil) {
+                                user[0].location = chosenLocation ?? Location()
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                            
+                        }, label: {
+                            SolidTextButton(text: "Save", buttonLevel: .primary)
+                        })
+                    } else {
+                        NavigationLink(destination: WelcomeWizardView1()) {
+                            SolidTextButton(text: "Save", buttonLevel: .primary)
+                        } // navigationLink
+                        .simultaneousGesture(TapGesture().onEnded {
                             user[0].location = chosenLocation ?? Location()
-                            self.presentationMode.wrappedValue.dismiss()
-                        }
-                        
-                    }, label: {
-                        SolidTextButton(text: "Save", buttonLevel: .primary)
-                    })
+                        })
+                    }
+                    
                     
                 } // VStack stay in safe area
                     .padding()
@@ -101,7 +115,7 @@ struct LocationView: View {
 
 #Preview {
     MainActor.assumeIsolated {
-        LocationView()
+        LocationView(fromSettings: true)
             .modelContainer(previewContainer)
     }
 }

@@ -7,7 +7,8 @@
 
 import SwiftUI
 import SwiftData
-
+import AVFoundation
+import PhotosUI
 /**
  Second screen of the Wizard shown to a new user, their skin color is generated from an image they provide
  */
@@ -55,7 +56,7 @@ struct WelcomeWizardView2: View {
                         
                         /// take image button, once first image is taken successfully, turns into less primary
                         NavigationLink {
-                            ImagePicker(sourceType: .camera, selectedImage: $photo)
+                            DeliveredView(photo: $photo)
                         } label: {
                             if (photo != nil) {
                                 SolidTextButton(text: "Retake Image", buttonLevel: .tertiary)
@@ -119,3 +120,46 @@ struct WelcomeWizardView2: View {
     }
     
 }
+
+
+
+struct DeliveredView: View {
+    
+    @Binding var photo: UIImage?
+    @State private var useCamera = true
+    @State private var photoPicker: PhotosPickerItem? = nil
+    
+    func canWeUseCamera() {
+        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) !=  .authorized {
+            
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) -> Void in
+               if granted == false {
+                   // User rejected
+                   useCamera = false
+               }
+           })
+        }
+    }
+    
+    init(photo: Binding<UIImage?>) {
+        self._photo = photo
+        self.useCamera = true
+        
+        canWeUseCamera()
+    }
+    
+    var body: some View {
+        if useCamera {
+            ImagePicker(sourceType: .camera, selectedImage: $photo)
+        } else {
+            PhotosPicker("pick your skin photo", selection: $photoPicker, matching: .images)
+                .onChange(of: photoPicker) { oldValue, newValue in
+                    Task {
+                        if let data = try? await photoPicker?.loadTransferable(type: Data.self) {
+                            photo = UIImage(data: data)
+                        } // if we can get the data
+                    } // task
+                } // on change of photo picker
+        } // if/else useCamera
+    } // body
+} // DeliveredView

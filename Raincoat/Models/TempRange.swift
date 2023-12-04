@@ -14,7 +14,7 @@ enum TempRange: CaseIterable {
     case scorching, hot, warm, cool, cold, frigid, freezing, frozen
     
     // inclusive
-    var min: Int {
+    var minF: Int {
         switch self {
         case .scorching:
             return 90
@@ -36,7 +36,7 @@ enum TempRange: CaseIterable {
     } // min
     
     // not inclusive
-    var max: Int {
+    var maxF: Int {
         switch self {
         case .scorching:
             return 200
@@ -54,6 +54,50 @@ enum TempRange: CaseIterable {
             return 32
         case .frozen:
             return 15
+        }// switch
+    } // max
+    
+    // inclusive
+    var minC: Int {
+        switch self {
+        case .scorching:
+            return 32
+        case .hot:
+            return 27
+        case .warm:
+            return 18
+        case .cool:
+            return 10
+        case .cold:
+            return 4
+        case .frigid:
+            return 0
+        case .freezing:
+            return -9
+        case .frozen:
+            return -100
+        }// switch
+    } // min
+    
+    // not inclusive
+    var maxC: Int {
+        switch self {
+        case .scorching:
+            return 100
+        case .hot:
+            return 32
+        case .warm:
+            return 27
+        case .cool:
+            return 18
+        case .cold:
+            return 10
+        case .frigid:
+            return 4
+        case .freezing:
+            return 0
+        case .frozen:
+            return -9
         }// switch
     } // max
     

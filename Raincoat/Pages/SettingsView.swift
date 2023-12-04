@@ -50,7 +50,7 @@ struct SettingsView: View {
                     
                     // Location
                     NavigationLink {
-                        LocationView()
+                        LocationView(fromSettings: true)
                     } label: {
                         RowSettingsButton(title: "Location", value: user[0].location.shortname)
                     }

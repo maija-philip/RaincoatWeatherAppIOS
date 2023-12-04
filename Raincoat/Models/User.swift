@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import SwiftData
 
+/// enum that describes the hair type the user picked
 enum Hairstyle: String {
     case bald = "bald"
     case short = "short"
@@ -16,8 +17,10 @@ enum Hairstyle: String {
 }
 
 @Model // automatically conforms to observable, swiftData auto generates an id
+/// stores the user's settings in swiftdata
 class User {
     
+    /// breaks down the enum to store it as a String in the model
     // take name priority and rename as priority num, enum value is being stored as a raw value
     // using computed property priority to get enum out of it
     @Attribute(originalName: "hair") var hairNum: Hairstyle.RawValue = Hairstyle.bald.rawValue
@@ -31,6 +34,7 @@ class User {
     var location: Location
     var useCelsius: Bool
     
+    /// create a new user from a set of values
     init(hair: Hairstyle, hotcold: Double, skincolor: SkinColor, location: Location, useCelsius: Bool) {
         self.hairNum = hair.rawValue
         self.hotcold = hotcold
@@ -39,6 +43,7 @@ class User {
         self.useCelsius = useCelsius
     }
     
+    /// create a default user
     convenience init() {
         self.init(
             hair: .bald,

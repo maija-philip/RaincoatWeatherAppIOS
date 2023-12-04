@@ -25,7 +25,7 @@ class DataViewModel {
         let units = user.useCelsius ? "metric" : "imperial"
         let lat = user.location.latitude
         let long = user.location.longitude
-        let urlString = "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(long)&cnt=1&units=\(units)&appid=9ec235daafa8f93bad9066f04ac55f07"
+        let urlString = "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(long)&cnt=8&units=\(units)&appid=9ec235daafa8f93bad9066f04ac55f07"
         
         // make sure url is valid
         guard let url = URL(string: urlString) else {
@@ -60,7 +60,15 @@ class DataViewModel {
                 
                 let decoder = JSONDecoder()
                 let weatherList = try! decoder.decode(WeatherListStruct.self, from: data)
-                return Weather(weatherData: weatherList, user: user)
+                if weatherList.list.count < 1 {
+                    return Weather()
+                }
+                let weatherObj = Weather(weatherData: weatherList.list[0], user: user)
+                for weatherSection in weatherList.list {
+                    weatherObj.checkIfNeedsAdjusting(weatherData: weatherSection)
+                }
+                weatherObj.resetTempMessage(user: user)
+                return weatherObj
                 
                 // convert to string for now bc that is what we are expecting
 //                let encoder = JSONEncoder()

@@ -10,7 +10,6 @@
 		A824B0302AF18F500061A2ED /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824B02F2AF18F500061A2ED /* SettingsView.swift */; };
 		A833EDEB2AFA895E00F4A364 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EDEA2AFA895E00F4A364 /* User.swift */; };
 		A83774FE2B125D9C008E40EE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83774FD2B125D9C008E40EE /* Message.swift */; };
-		A83FA4B02AFD2C380070A4F3 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83FA4AF2AFD2C380070A4F3 /* Test.swift */; };
 		A847EFB32B02F95D004C2200 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A847EFB22B02F95D004C2200 /* Location.swift */; };
 		A84B3EB42B181C05002A8B1C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B3EB32B181C05002A8B1C /* ImagePicker.swift */; };
 		A84B3EB62B181FCD002A8B1C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B3EB52B181FCD002A8B1C /* UIImageExtension.swift */; };
@@ -24,6 +23,7 @@
 		A86CE7332AFD85D1007FA521 /* DataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86CE7322AFD85D1007FA521 /* DataViewModel.swift */; };
 		A87151322B0C2B4600ECAD65 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87151312B0C2B4600ECAD65 /* LocationViewModel.swift */; };
 		A87151342B0C2B7600ECAD65 /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87151332B0C2B7600ECAD65 /* LocationSearchService.swift */; };
+		A88113C42B1E98F000D70301 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88113C32B1E98F000D70301 /* LocationManager.swift */; };
 		A88A8F952AF1402300FC1CCB /* HomepageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88A8F942AF1402300FC1CCB /* HomepageView.swift */; };
 		A89013132B095A2800CDE0E8 /* ImageWithSkinBehind.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89013122B095A2800CDE0E8 /* ImageWithSkinBehind.swift */; };
 		A8D7FA332AF9407C004956C2 /* SolidTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D7FA322AF9407C004956C2 /* SolidTextButton.swift */; };
@@ -39,7 +39,6 @@
 		A824B02F2AF18F500061A2ED /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A833EDEA2AFA895E00F4A364 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A83774FD2B125D9C008E40EE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		A83FA4AF2AFD2C380070A4F3 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		A847EFB22B02F95D004C2200 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		A84B3EB32B181C05002A8B1C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		A84B3EB52B181FCD002A8B1C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
@@ -53,6 +52,7 @@
 		A86CE7322AFD85D1007FA521 /* DataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewModel.swift; sourceTree = "<group>"; };
 		A87151312B0C2B4600ECAD65 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		A87151332B0C2B7600ECAD65 /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
+		A88113C32B1E98F000D70301 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A88A8F942AF1402300FC1CCB /* HomepageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageView.swift; sourceTree = "<group>"; };
 		A89013122B095A2800CDE0E8 /* ImageWithSkinBehind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithSkinBehind.swift; sourceTree = "<group>"; };
 		A8D7FA322AF9407C004956C2 /* SolidTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidTextButton.swift; sourceTree = "<group>"; };
@@ -92,6 +92,7 @@
 				A85F83932B1552E900637335 /* SkinColor.swift */,
 				A84B3EB32B181C05002A8B1C /* ImagePicker.swift */,
 				A84B3EB52B181FCD002A8B1C /* UIImageExtension.swift */,
+				A88113C32B1E98F000D70301 /* LocationManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -141,7 +142,6 @@
 				A88A8F942AF1402300FC1CCB /* HomepageView.swift */,
 				A824B02F2AF18F500061A2ED /* SettingsView.swift */,
 				A8D7FA342AF94541004956C2 /* LocationView.swift */,
-				A83FA4AF2AFD2C380070A4F3 /* Test.swift */,
 				A8DDA7EC2B168254005305C0 /* Router.swift */,
 			);
 			path = Pages;
@@ -241,13 +241,13 @@
 				A8D7FA332AF9407C004956C2 /* SolidTextButton.swift in Sources */,
 				A85F83942B1552E900637335 /* SkinColor.swift in Sources */,
 				A84B3EB42B181C05002A8B1C /* ImagePicker.swift in Sources */,
-				A83FA4B02AFD2C380070A4F3 /* Test.swift in Sources */,
 				A856301B2AEC0CBB00937D95 /* WelcomeWizardView1.swift in Sources */,
 				A87151342B0C2B7600ECAD65 /* LocationSearchService.swift in Sources */,
 				A89013132B095A2800CDE0E8 /* ImageWithSkinBehind.swift in Sources */,
 				A86CE72D2AFD7630007FA521 /* Weather.swift in Sources */,
 				A8DB007E2AEB3FAC00617FD4 /* SolidButton.swift in Sources */,
 				A833EDEB2AFA895E00F4A364 /* User.swift in Sources */,
+				A88113C42B1E98F000D70301 /* LocationManager.swift in Sources */,
 				A8D7FA352AF94541004956C2 /* LocationView.swift in Sources */,
 				A86CE7332AFD85D1007FA521 /* DataViewModel.swift in Sources */,
 				A84B3EB62B181FCD002A8B1C /* UIImageExtension.swift in Sources */,
