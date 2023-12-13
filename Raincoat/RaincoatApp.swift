@@ -11,10 +11,12 @@ import SwiftUI
 struct RaincoatApp: App {
     
     // @State private var user = User()
+    @State private var locationManager = LocationManager()
     
     var body: some Scene {
         WindowGroup {
             Router() //.environment(user)
+                .environment(locationManager)
                 .modelContainer(for: [User.self])
         }
     }

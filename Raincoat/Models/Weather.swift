@@ -86,30 +86,30 @@ class Weather {
                 for range in TempRange.allCases {
                     
                     if (range.maxC > factored.max && range.minC <= factored.max) {
-                        // set max for image, dress for hot
+                        // dress for hot
                         message.image = "\(range).\(user.hair)"
                         dressForTemp = range
                     }
                     if (range.maxC > factored.min && range.minC <= factored.min) {
-                        // set min for message, prepare for cold
+                        // prepare for cold
                         message.middle = range.item
+
                     }
                 } // for all cases
             }
             // if cold outside, dress for cold, prepare for warm
-            else if (factored.min > TempRange.cool.minC) {
+            else if (factored.min < TempRange.cool.minC) {
                 // loop thorugh all the cases to find which ones match the min and max
-                changed = true
                 
-                message.beginning = "Wear a "
-                message.end = " for the afternoon"
+                message.beginning = "Wear a"
+                message.end = "for the afternoon"
                 for range in TempRange.allCases {
                     if (range.maxC > factored.max && range.minC <= factored.max) {
-                        // set max for message, prepare for warm
+                        // prepare for hot
                         message.middle = range.item
                     }
                     if (range.maxC > factored.min && range.minC <= factored.min) {
-                        // set min for image, dress for cold
+                        // dress for cold
                         message.image = "\(range).\(user.hair)"
                         dressForTemp = range
                     }
@@ -139,8 +139,8 @@ class Weather {
                 // loop thorugh all the cases to find which ones match the min and max
                 changed = true
                 
-                message.beginning = "Wear a "
-                message.end = " for the afternoon"
+                message.beginning = "Wear a"
+                message.end = "for the afternoon"
                 for range in TempRange.allCases {
                     if (range.maxF > factored.max && range.minF <= factored.max) {
                         // set max for message, prepare for warm
@@ -155,18 +155,17 @@ class Weather {
             }
         }
         
-        
         // if its that weird cool section, idk man best of luck to you
         if (!changed) {
             message.image = "cool.\(user.hair)"
             if humidity > 70 {
-                message.beginning = "Wear a "
+                message.beginning = "Wear a"
                 message.middle = "t-shirt"
-                message.end = " for the humidity"
+                message.end = "for the humidity"
             } else {
-                message.beginning = "Dress in "
+                message.beginning = "Dress in"
                 message.middle = "layers"
-                message.end = " because it may be warm in the sun and cool in the shade"
+                message.end = "because it may be warm in the sun and cool in the shade"
             }
         }
         
@@ -180,13 +179,37 @@ class Weather {
     } // getTempMessage()
     
     private func factorTemp(hotcold: Double, useCelcius: Bool) -> (min: Int, max: Int) {
-        // TODO: factor in hot cold
-        // TODO: factor in humidity
+        
+        // TODO: This formula is v1 and could totally be improved
+        let hotColdShift = getHotColdShift(hotcold: hotcold) // in celsius
+        let humidityShift = feelsLike - current // get the api's feels like shift
+
         if (useCelcius) {
-            return (min, max)
+            // hotcold only effects when its not 50
+            return (min+hotColdShift+humidityShift, max+hotColdShift+humidityShift)
         }
         // fahrenheit
-        return (min, max)
+        // turn the shift into farenheit
+        let adjustedShift = Weather.celsiusToFahrenheit(temp: hotColdShift)
+        
+        return (min+adjustedShift+humidityShift, max+adjustedShift+humidityShift)
+    }
+    
+    /// Calculate the effect of feeling hot or cold on the temperature
+    ///  will be negaive for feeling hot, and positive for feeling cold
+    ///    SHIFT IS IN CELSIUS
+    private func getHotColdShift(hotcold: Double) -> Int{
+        // I'm using x because this is a verrryyyy long equation
+        /// i'm shifting hotcold so that no change (50) is at x=0 instead of x=50
+        let x = hotcold - 50
+        
+        /// this formula is very long and particular to shift the max of 7 degrees C and exponentially less than that for the middle
+        let part1 = -0.00002 * x * x * x
+        let part2 = 0.00000000000000001 * x * x
+        let part3 = 0.09 * x
+        
+        return Int(round(part1 + part2 - part3))
+        
     }
     
     public static func fahrenheitToCelsius(temp: Int) -> Int {

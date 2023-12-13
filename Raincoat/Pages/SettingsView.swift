@@ -7,16 +7,20 @@
 
 import SwiftUI
 import SwiftData
+import MapKit
 
 struct SettingsView: View {
     
     // @Environment(User.self) private var user: User
     @Environment(\.modelContext) private var modelContext
     @Query private var user: [User]
+    @Environment(LocationManager.self) private var locationManager: LocationManager
     
+    // params
     @State var hotcold: Double
     @State var useCelsius: Bool
     @State var hairstyle: Hairstyle?
+    @Binding var wentToSettingsReload: Bool
     
     @State private var showHairEditSheet = false
     
@@ -52,7 +56,7 @@ struct SettingsView: View {
                     NavigationLink {
                         LocationView(fromSettings: true)
                     } label: {
-                        RowSettingsButton(title: "Location", value: user[0].location.shortname)
+                        RowSettingsButton(title: "Search a Location", value: user[0].location.shortname)
                     }
                     
                     // Celsius vs Farenheight
@@ -107,6 +111,26 @@ struct SettingsView: View {
                     
                     Spacer()
                     
+                    HStack {
+                        Spacer()
+                        if (locationManager.location != nil) {
+                            // location exists
+                            Button  {
+                                user[0].location = Location(latitude: locationManager.location?.coordinate.latitude ?? 0, longitude: locationManager.location?.coordinate.longitude ?? 0)
+                            } label: {
+                                SolidTextButton(text: "Use Current Location", buttonLevel: .secondary)
+                            }
+
+                        }
+                        Spacer()
+                    }
+                    .onAppear() {
+                        // print("toggled")
+                        wentToSettingsReload.toggle()
+                    }
+                    
+                    
+                    
                     // DeleteButton()//navigationPath: $navigationPath)
                                         
                     
@@ -125,7 +149,8 @@ struct SettingsView: View {
 
 #Preview {
     MainActor.assumeIsolated {
-        SettingsView(hotcold: 50.0, useCelsius: true)
+        SettingsView(hotcold: 50.0, useCelsius: true, wentToSettingsReload: .constant(true))
+            .environment(LocationManager())
             .modelContainer(previewContainer)
     }
 }

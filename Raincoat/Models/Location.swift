@@ -27,5 +27,10 @@ class Location {
         // sunnyvale, CA
         self.init(mapItem: MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.371428, longitude: -122.038679))))
     }
+    
+    convenience init(latitude: Double, longitude: Double) {
+        self.init(mapItem: MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))))
+        shortname = "Your Location"
+    }
 }
 

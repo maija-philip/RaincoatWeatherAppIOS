@@ -55,5 +55,57 @@ class User {
         
     }
     
+    convenience init(location: Location, hair: Hairstyle, hotcold: Double) {
+        self.init(
+            hair: hair,
+            hotcold: hotcold,
+            skincolor: SkinColor(), // default grey skin
+            location: location,
+            useCelsius: true
+        )
+        
+    }
+    
+    convenience init(welcomeUser: WelcomeUser?) {
+        self.init(
+            hair: welcomeUser?.hair ?? .bald,
+            hotcold: welcomeUser?.hotcold ?? 50.0,
+            skincolor: welcomeUser?.skincolor ?? SkinColor(), // default grey skin
+            location: welcomeUser?.location ?? Location(),
+            useCelsius: welcomeUser?.useCelsius ?? true
+        )
+        
+    }
+    
     // store user data when updated
+}
+
+
+class WelcomeUser {
+    
+    var hair: Hairstyle
+    var hotcold: Double // from 0 to 100
+    var skincolor: SkinColor
+    var location: Location
+    var useCelsius: Bool
+    
+    /// create a new user from a set of values
+    init(hair: Hairstyle, hotcold: Double, location: Location) {
+        self.hair = hair
+        self.hotcold = hotcold
+        self.skincolor = SkinColor()
+        self.location = location
+        self.useCelsius = true
+    }
+    
+    /// create a default user
+    convenience init() {
+        self.init(
+            hair: .bald,
+            hotcold: 50.0,
+            location: Location()
+        )
+        
+    }
+
 }

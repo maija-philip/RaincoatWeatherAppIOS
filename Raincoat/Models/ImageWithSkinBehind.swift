@@ -16,6 +16,7 @@ struct ImageWithSkinBehind: View {
     @Query private var user: [User]
     
     var image: String
+    var welcomeUser: WelcomeUser?
 
 
     var body: some View {
@@ -24,7 +25,7 @@ struct ImageWithSkinBehind: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
         }
-        .background(user[0].skincolor.color)
+        .background(welcomeUser == nil ? user[0].skincolor.color : welcomeUser?.skincolor.color ?? SkinColor().color)
         .padding(.bottom)
     }
 }

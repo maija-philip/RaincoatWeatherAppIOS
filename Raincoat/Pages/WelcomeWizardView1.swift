@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import MapKit
 
 /// This is the first screen a new user will see when they open the app, it will guide them through getting some basic data of their hair length preference and how they tend to feel hot and cold
 struct WelcomeWizardView1: View {
@@ -14,26 +15,33 @@ struct WelcomeWizardView1: View {
     // @Environment(User.self) private var user: User
     @Environment(\.modelContext) private var modelContext
     @Query private var user: [User]
+    @Environment(LocationManager.self) private var locationManager: LocationManager
     
     @State private var hotCold: Double = 50.0
     @State private var selected: Hairstyle?
     @State private var secondQuestionOpacity: Double = 0.0
+    
+    @State var isLocationNext: Bool
 
     // create nav appearance
-    init () {
+    init (isLocationNextScreen: Bool, location: Location?) {
+        
+        _isLocationNext = State(initialValue: isLocationNextScreen)
+        
         // create the UINavigation bar back button appearance
         UINavigationBar.appearance().backIndicatorImage = UIImage(systemName: "arrow.backward")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.backward")
         UINavigationBar.appearance().titleTextAttributes = .none
         
+        
+        
     } // init
     
     var body: some View {
-        Color("Surface")
-            .overlay(
-            
+        NavigationStack {
+            Color("Surface")
+                .overlay(
                 // Main Content
-                NavigationStack {
                     VStack {
                         // Welcome message
                         Text("Welcome to\n\(Text("Raincoat").foregroundStyle(Color("Theme")))")
@@ -41,8 +49,8 @@ struct WelcomeWizardView1: View {
                             .fontWeight(.heavy)
                             .foregroundStyle(Color("OnSurface"))
                             .multilineTextAlignment(.center)
-                            .padding(.bottom)
-                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 40, trailing: 0))
+                            .padding(.vertical)
+                            .padding(EdgeInsets(top: 40, leading: 0, bottom: 40, trailing: 0))
                         
                         /// User chooses their prefered hairstyle, once chosen, the second question appears
                         HairstyleBlock(selected: $selected, secondQuestionOpacity: $secondQuestionOpacity)
@@ -56,38 +64,33 @@ struct WelcomeWizardView1: View {
                             Spacer()
                             
                             /// Continue button saves their data in the user model
-                            NavigationLink(destination: WelcomeWizardView2(isWelcomeWizard: true)) {
-                                SolidTextButton(text: "Continue", buttonLevel: .primary)
-                            } // navigationLink
-                            .simultaneousGesture(TapGesture().onEnded {
-                                if user.first != nil {
-                                    user[0].hotcold = hotCold
-                                    user[0].hair = selected ?? .bald
-                                } else {
-                                    let newUser = User()
-                                    newUser.hotcold = hotCold
-                                    newUser.hair = selected ?? .bald
-                                    modelContext.insert(newUser)
-                                }
-                                
-                            })
-                            .padding()
+                            if !isLocationNext || locationManager.location != nil {
+                                NavigationLink(destination: WelcomeWizardView2(isWelcomeWizard: true, welcomeUser: WelcomeUser(hair: selected ?? .bald, hotcold: hotCold, location:Location(mapItem: MKMapItem(placemark: MKPlacemark(coordinate: locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0))))))) {
+                                    SolidTextButton(text: "Continue", buttonLevel: .primary)
+                                } // navigationLink
+                                .padding()
+                            } else {
+                                NavigationLink(destination: LocationView( fromSettings: false, welcomeUser: WelcomeUser(hair: selected ?? .bald, hotcold: hotCold, location: Location()))) {
+                                    SolidTextButton(text: "Continue", buttonLevel: .primary)
+                                } // navigationLink
+                                .padding()
+                            } // choose which next screen
+                            
                         } // VStack - show after hair selected
                         .opacity(secondQuestionOpacity)
                         
                         
                         
                     } // VStack stay in safe area
-                        .padding()
-                        .padding(.horizontal)
-                        .safeAreaPadding()
-                        .navigationTitle("")
-                } // NavigationStack
-                    .tint(Color("OnSurfaceVariant"))
-                    
+                    .padding()
+                    .padding(.horizontal)
+                    .safeAreaPadding()
+                    .navigationTitle("")
             
             ) // main overlay
             .edgesIgnoringSafeArea(.vertical)
+        } // NavigationStack
+            .tint(Color("OnSurfaceVariant"))
         
     } // body
     
@@ -95,7 +98,8 @@ struct WelcomeWizardView1: View {
 
 #Preview {
     MainActor.assumeIsolated {
-        WelcomeWizardView1()
+        WelcomeWizardView1(isLocationNextScreen: true, location: nil)
+            .environment(LocationManager())
             .modelContainer(previewContainer)
     }
     

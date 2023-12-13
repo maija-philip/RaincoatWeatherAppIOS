@@ -15,6 +15,7 @@
 		A84B3EB62B181FCD002A8B1C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B3EB52B181FCD002A8B1C /* UIImageExtension.swift */; };
 		A85630192AEC0C2800937D95 /* WelcomeWizardView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85630182AEC0C2800937D95 /* WelcomeWizardView2.swift */; };
 		A856301B2AEC0CBB00937D95 /* WelcomeWizardView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A856301A2AEC0CBB00937D95 /* WelcomeWizardView1.swift */; };
+		A85E29B82B279C0600A3BC05 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85E29B72B279C0600A3BC05 /* Test.swift */; };
 		A85F83942B1552E900637335 /* SkinColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F83932B1552E900637335 /* SkinColor.swift */; };
 		A85F83962B15573700637335 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F83952B15573700637335 /* SampleData.swift */; };
 		A86CE72D2AFD7630007FA521 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86CE72C2AFD7630007FA521 /* Weather.swift */; };
@@ -44,6 +45,7 @@
 		A84B3EB52B181FCD002A8B1C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		A85630182AEC0C2800937D95 /* WelcomeWizardView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeWizardView2.swift; sourceTree = "<group>"; };
 		A856301A2AEC0CBB00937D95 /* WelcomeWizardView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeWizardView1.swift; sourceTree = "<group>"; };
+		A85E29B72B279C0600A3BC05 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		A85F83932B1552E900637335 /* SkinColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinColor.swift; sourceTree = "<group>"; };
 		A85F83952B15573700637335 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		A86CE72C2AFD7630007FA521 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				A824B02F2AF18F500061A2ED /* SettingsView.swift */,
 				A8D7FA342AF94541004956C2 /* LocationView.swift */,
 				A8DDA7EC2B168254005305C0 /* Router.swift */,
+				A85E29B72B279C0600A3BC05 /* Test.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				A833EDEB2AFA895E00F4A364 /* User.swift in Sources */,
 				A88113C42B1E98F000D70301 /* LocationManager.swift in Sources */,
 				A8D7FA352AF94541004956C2 /* LocationView.swift in Sources */,
+				A85E29B82B279C0600A3BC05 /* Test.swift in Sources */,
 				A86CE7332AFD85D1007FA521 /* DataViewModel.swift in Sources */,
 				A84B3EB62B181FCD002A8B1C /* UIImageExtension.swift in Sources */,
 			);
@@ -388,6 +392,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Raincoat would like to use your camera to take a picture";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Raincoat would like to use your location to get the weather data for your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -418,6 +423,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Raincoat would like to use your camera to take a picture";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Raincoat would like to use your location to get the weather data for your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

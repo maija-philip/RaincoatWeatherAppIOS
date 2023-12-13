@@ -13,8 +13,10 @@ import MapKit
 struct Router: View {
     
     // model data
+    @Environment(\.modelContext) private var modelContext
     @Query private var user: [User]
-    @State private var locationManager = LocationManager()
+    @Environment(LocationManager.self) private var locationManager: LocationManager
+    
     var locationError : Bool { return locationManager.locationError }
     var permissionError : Bool { return locationManager.permissionsError }
     
@@ -26,43 +28,50 @@ struct Router: View {
         UINavigationBar.appearance().titleTextAttributes = .none
         
         
+        
     } // init
     
     var body: some View {
     
-        // show the user the homepage if they are a current user or the first page of the welcome wizard if they are a new user
-        if user.first != nil {
-            VStack {
-                HomepageView()
-                    .navigationTitle("")
-            }
-            .onAppear() {
-                if (!locationError && !permissionError && locationManager.location != nil) {
-                    user[0].location = Location(mapItem: MKMapItem(placemark: MKPlacemark(coordinate: locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0))))
-                }
-            }
-        } else {
-            VStack {
-                if !locationError && !permissionError && locationManager.location != nil {
-                    WelcomeWizardView1()
+        VStack {
+            // show the user the homepage if they are a current user or the first page of the welcome wizard if they are a new user
+            if user.first != nil {
+                VStack {
+                    HomepageView()
                         .navigationTitle("")
-                        .onAppear() {
-                            user[0].location = Location(mapItem: MKMapItem(placemark: MKPlacemark(coordinate: locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0))))
-                        }
-                } else {
-                    LocationView(fromSettings: false)
-                }
+                } // VStack HomepageView Wrapper
+                .onAppear() {
+
+                    if (!locationError && !permissionError && locationManager.location != nil) {
+                        user[0].location = Location(latitude: locationManager.location?.coordinate.latitude ?? 0, longitude: locationManager.location?.coordinate.longitude ?? 0)
+                    } // if errors
+                    
+                } // on Appear
+
+            } else {
                 
-            }
+                // if there is no locaton error or permission error and we have a location
+                if !locationError && !permissionError && locationManager.location != nil {
+                    VStack {
+                        WelcomeWizardView1(isLocationNextScreen: false, location: Location(latitude: locationManager.location?.coordinate.latitude ?? 0, longitude: locationManager.location?.coordinate.longitude ?? 0))
+                            .navigationTitle("")
+                    } // VStack to wrap WelcomeWizard
+                } else {
+                    // There is no viable user location
+                    WelcomeWizardView1(isLocationNextScreen: true, location: nil)
+                        .navigationTitle("")
+                } // else location error
+                
+            } // else from (if user exists in model)
+            
         }
-            
-            
     } // body
 } // Router
 
 #Preview {
     MainActor.assumeIsolated {
         Router()
+            .environment(LocationManager())
             .modelContainer(previewContainer)
     }
     

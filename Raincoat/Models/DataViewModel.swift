@@ -44,23 +44,27 @@ class DataViewModel {
                 guard let httpResponse = response as? HTTPURLResponse
                 else {
                     self.error = true
-                    self.errorMessage = "Bad response"
+                    // self.errorMessage = "Bad response"
+                    self.errorMessage = "Please make sure that you have internet connection. We can't fetch the weather without internet."
                     throw URLError(.badServerResponse)
                 }
                 
                 // check if status code is 200
                 guard httpResponse.statusCode == 200 else {
                     // return "Bad Status Code: \(httpResponse.statusCode)"
+                    self.error = true
                     self.errorMessage = "Bad Status Code";
                     print(httpResponse.statusCode)
                     return Weather()
                 }
                 
-                print(httpResponse)
+                // print(httpResponse)
                 
                 let decoder = JSONDecoder()
                 let weatherList = try! decoder.decode(WeatherListStruct.self, from: data)
                 if weatherList.list.count < 1 {
+                    self.error = true
+                    self.errorMessage = "We were not able to get the data. Check your internet connection"
                     return Weather()
                 }
                 let weatherObj = Weather(weatherData: weatherList.list[0], user: user)
