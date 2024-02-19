@@ -26,6 +26,7 @@ struct ImageWithSkinBehind: View {
                 .aspectRatio(contentMode: .fit)
         }
         .background(welcomeUser == nil ? user[0].skincolor.color : welcomeUser?.skincolor.color ?? SkinColor().color)
+        .border(Color("Surface"))
         .padding(.bottom)
     }
 }

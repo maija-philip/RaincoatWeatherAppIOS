@@ -208,7 +208,7 @@ class Weather {
         let part2 = 0.00000000000000001 * x * x
         let part3 = 0.09 * x
         
-        return Int(round(part1 + part2 - part3))
+        return Int(round(part1 + part2 - part3)) * (-1) // flip the sign of the number because the result ended up being backwards without it
         
     }
     

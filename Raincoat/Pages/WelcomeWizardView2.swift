@@ -127,8 +127,11 @@ struct WelcomeWizardView2: View {
                     .navigationTitle("")
                     .onAppear() {
                         /// if a color exists, set it to the approriate user
+                        print("does photo exist?")
                         if photo != nil {
                             let color = photo?.averageColor ?? .gray
+                            
+                            print("what color? \(color)")
                             
                             // if we have a user in the model, set that one, otherwise put it in the welcome user
                             if user.first != nil {
@@ -164,17 +167,7 @@ struct PhotoView: View {
     @Binding var photo: UIImage?
     @State var useCamera: Bool
     @State private var photoPicker: PhotosPickerItem? = nil
-    
-    
-//    
-//    init(photo: Binding<UIImage?>) {
-//        self._photo = photo
-//        self._useCamera = State(initialValue: canUseCameraValue)
-//        
-//        print("what do we have here? \(canWeUseCamera())")
-//        print("what about now? useCamera: \(useCamera)")
-//    }
-//    
+ 
     var body: some View {
         if useCamera {
             NavigationLink {
@@ -196,9 +189,15 @@ struct PhotoView: View {
                     SolidTextButton(text: "Pick Image", buttonLevel: .primary)
                 }
             } // photosPicker
+            .onAppear() {
+                print("can you print pls????")
+            }
             .onChange(of: photoPicker) { oldValue, newValue in
+                print("have image")
                 Task {
+                    print("here?")
                     if let data = try? await photoPicker?.loadTransferable(type: Data.self) {
+                        print("have data")
                         photo = UIImage(data: data)
                     } // if we can get the data
                 } // task
