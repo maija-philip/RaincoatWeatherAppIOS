@@ -5,6 +5,8 @@
 //  Created by Maija Philip on 11/9/23.
 //
 
+// Changing on 2/29/2024 so that all calculations are done in celcius 
+
 import Foundation
 
 class Weather {
@@ -21,6 +23,7 @@ class Weather {
     
     init ( weatherData: WeatherSectionsStruct, user: User ) {
         
+        // gets weather in celcius
         let thisWeather = weatherData.main
         // round and cast double values to int
         current = Int(round(thisWeather.temp))
@@ -73,87 +76,89 @@ class Weather {
         var dressForTemp: TempRange = .scorching
         
         // factor in the hot/cold
-        let factored = factorTemp(hotcold: user.hotcold, useCelcius: user.useCelsius)
+        let factored = factorTemp(hotcold: user.hotcold)
         var changed = false
         
-        if (user.useCelsius) {
-            // if warm outside, dress for warm, prepare for cold
-            // do this first because you can always add layers but can't take off your bases
+        // we do all calcs in celsius
+        
+        
+        // if warm outside, dress for warm, prepare for cold
+        // do this first because you can always add layers but can't take off your bases
+        if (factored.max > TempRange.cool.maxC) {
             changed = true
-            
-            if (factored.max > TempRange.cool.maxC) {
-                // loop thorugh all the cases to find which ones match the min and max
-                for range in TempRange.allCases {
-                    
-                    if (range.maxC > factored.max && range.minC <= factored.max) {
-                        // dress for hot
-                        message.image = "\(range).\(user.hair)"
-                        dressForTemp = range
-                    }
-                    if (range.maxC > factored.min && range.minC <= factored.min) {
-                        // prepare for cold
-                        message.middle = range.item
+            // loop thorugh all the cases to find which ones match the min and max
+            for range in TempRange.allCases {
+                
+                if (range.maxC > factored.max && range.minC <= factored.max) {
+                    // dress for hot
+                    message.image = "\(range).\(user.hair)"
+                    dressForTemp = range
+                }
+                if (range.maxC > factored.min && range.minC <= factored.min) {
+                    // prepare for cold
+                    message.middle = range.item
 
-                    }
-                } // for all cases
-            }
-            // if cold outside, dress for cold, prepare for warm
-            else if (factored.min < TempRange.cool.minC) {
-                // loop thorugh all the cases to find which ones match the min and max
-                
-                message.beginning = "Wear a"
-                message.end = "for the afternoon"
-                for range in TempRange.allCases {
-                    if (range.maxC > factored.max && range.minC <= factored.max) {
-                        // prepare for hot
-                        message.middle = range.item
-                    }
-                    if (range.maxC > factored.min && range.minC <= factored.min) {
-                        // dress for cold
-                        message.image = "\(range).\(user.hair)"
-                        dressForTemp = range
-                    }
-                } // for all cases
-            }
-        } else {
-            // if warm outside, dress for warm, prepare for cold
-            // do this first because you can always add layers but can't take off your bases
-            changed = true
-            
-            if (factored.max > TempRange.cool.maxF) {
-                // loop thorugh all the cases to find which ones match the min and max
-                for range in TempRange.allCases {
-                    if (range.maxF > factored.max && range.minF <= factored.max) {
-                        // set max for image, dress for hot
-                        message.image = "\(range).\(user.hair)"
-                        dressForTemp = range
-                    }
-                    if (range.maxF > factored.min && range.minF <= factored.min) {
-                        // set min for message, prepare for cold
-                        message.middle = range.item
-                    }
-                } // for all cases
-            }
-            // if cold outside, dress for cold, prepare for warm
-            else if (factored.min > TempRange.cool.minF) {
-                // loop thorugh all the cases to find which ones match the min and max
-                changed = true
-                
-                message.beginning = "Wear a"
-                message.end = "for the afternoon"
-                for range in TempRange.allCases {
-                    if (range.maxF > factored.max && range.minF <= factored.max) {
-                        // set max for message, prepare for warm
-                        message.middle = range.item
-                    }
-                    if (range.maxF > factored.min && range.minF <= factored.min) {
-                        // set min for image, dress for cold
-                        message.image = "\(range).\(user.hair)"
-                        dressForTemp = range
-                    }
-                } // for all cases
-            }
+                }
+            } // for all cases
         }
+        // if cold outside, dress for cold, prepare for warm
+        else if (factored.min < TempRange.cool.minC) {
+            changed = true
+            // loop thorugh all the cases to find which ones match the min and max
+            
+            message.beginning = "Wear a"
+            message.end = "for the afternoon"
+            for range in TempRange.allCases {
+                if (range.maxC > factored.max && range.minC <= factored.max) {
+                    // prepare for hot
+                    message.middle = range.item
+                }
+                if (range.maxC > factored.min && range.minC <= factored.min) {
+                    // dress for cold
+                    message.image = "\(range).\(user.hair)"
+                    dressForTemp = range
+                }
+            } // for all cases
+        }
+//        } else {
+//            // if warm outside, dress for warm, prepare for cold
+//            // do this first because you can always add layers but can't take off your bases
+//            changed = true
+//            
+//            if (factored.max > TempRange.cool.maxF) {
+//                // loop thorugh all the cases to find which ones match the min and max
+//                for range in TempRange.allCases {
+//                    if (range.maxF > factored.max && range.minF <= factored.max) {
+//                        // set max for image, dress for hot
+//                        message.image = "\(range).\(user.hair)"
+//                        dressForTemp = range
+//                    }
+//                    if (range.maxF > factored.min && range.minF <= factored.min) {
+//                        // set min for message, prepare for cold
+//                        message.middle = range.item
+//                    }
+//                } // for all cases
+//            }
+//            // if cold outside, dress for cold, prepare for warm
+//            else if (factored.min > TempRange.cool.minF) {
+//                // loop thorugh all the cases to find which ones match the min and max
+//                changed = true
+//                
+//                message.beginning = "Wear a"
+//                message.end = "for the afternoon"
+//                for range in TempRange.allCases {
+//                    if (range.maxF > factored.max && range.minF <= factored.max) {
+//                        // set max for message, prepare for warm
+//                        message.middle = range.item
+//                    }
+//                    if (range.maxF > factored.min && range.minF <= factored.min) {
+//                        // set min for image, dress for cold
+//                        message.image = "\(range).\(user.hair)"
+//                        dressForTemp = range
+//                    }
+//                } // for all cases
+//            }
+//        }
         
         // if its that weird cool section, idk man best of luck to you
         if (!changed) {
@@ -178,21 +183,19 @@ class Weather {
         
     } // getTempMessage()
     
-    private func factorTemp(hotcold: Double, useCelcius: Bool) -> (min: Int, max: Int) {
+    private func factorTemp(hotcold: Double) -> (min: Int, max: Int) {
         
         // TODO: This formula is v1 and could totally be improved
         let hotColdShift = getHotColdShift(hotcold: hotcold) // in celsius
         let humidityShift = feelsLike - current // get the api's feels like shift
-
-        if (useCelcius) {
-            // hotcold only effects when its not 50
-            return (min+hotColdShift+humidityShift, max+hotColdShift+humidityShift)
-        }
-        // fahrenheit
-        // turn the shift into farenheit
-        let adjustedShift = Weather.celsiusToFahrenheit(temp: hotColdShift)
+        // hotcold only effects when its not 50
+        return (min+hotColdShift+humidityShift, max+hotColdShift+humidityShift)
         
-        return (min+adjustedShift+humidityShift, max+adjustedShift+humidityShift)
+//        // fahrenheit
+//        // turn the shift into farenheit
+//        let adjustedShift = Weather.celsiusToFahrenheit(temp: hotColdShift)
+//        
+//        return (min+adjustedShift+humidityShift, max+adjustedShift+humidityShift)
     }
     
     /// Calculate the effect of feeling hot or cold on the temperature

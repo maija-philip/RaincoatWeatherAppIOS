@@ -128,15 +128,15 @@ struct WeatherDataSection: View {
     var body: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading) {
-                Text("\(weather.current)°")
+                Text("\(user.useCelsius ? weather.current : Weather.celsiusToFahrenheit(temp: weather.current))°")
                     .font(.system(size: 70))
                     .fontWeight(.black)
                     .foregroundStyle(Color("Theme"))
 
                 HStack {
-                    Text("\(weather.min)°")
+                    Text("\(user.useCelsius ? weather.min : Weather.celsiusToFahrenheit(temp: weather.min))°")
                         .padding(.trailing)
-                    Text("\(weather.max)°")
+                    Text("\(user.useCelsius ? weather.max : Weather.celsiusToFahrenheit(temp: weather.max))°")
                 } // HStack - Min Max
                 .font(.title)
                 .foregroundStyle(Color("OnSurface"))

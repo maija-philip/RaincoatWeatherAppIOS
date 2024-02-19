@@ -14,48 +14,48 @@ enum TempRange: CaseIterable {
     case scorching, hot, warm, cool, cold, frigid, freezing, frozen
     
     // inclusive
-    var minF: Int {
-        switch self {
-        case .scorching:
-            return 90
-        case .hot:
-            return 80
-        case .warm:
-            return 65
-        case .cool:
-            return 50
-        case .cold:
-            return 40
-        case .frigid:
-            return 32
-        case .freezing:
-            return 15
-        case .frozen:
-            return -100
-        }// switch
-    } // min
-    
-    // not inclusive
-    var maxF: Int {
-        switch self {
-        case .scorching:
-            return 200
-        case .hot:
-            return 90
-        case .warm:
-            return 80
-        case .cool:
-            return 65
-        case .cold:
-            return 50
-        case .frigid:
-            return 40
-        case .freezing:
-            return 32
-        case .frozen:
-            return 15
-        }// switch
-    } // max
+//    var minF: Int {
+//        switch self {
+//        case .scorching:
+//            return 90
+//        case .hot:
+//            return 80
+//        case .warm:
+//            return 65
+//        case .cool:
+//            return 50
+//        case .cold:
+//            return 40
+//        case .frigid:
+//            return 32
+//        case .freezing:
+//            return 15
+//        case .frozen:
+//            return -100
+//        }// switch
+//    } // min
+//    
+//    // not inclusive
+//    var maxF: Int {
+//        switch self {
+//        case .scorching:
+//            return 200
+//        case .hot:
+//            return 90
+//        case .warm:
+//            return 80
+//        case .cool:
+//            return 65
+//        case .cold:
+//            return 50
+//        case .frigid:
+//            return 40
+//        case .freezing:
+//            return 32
+//        case .frozen:
+//            return 15
+//        }// switch
+//    } // max
     
     // inclusive
     var minC: Int {

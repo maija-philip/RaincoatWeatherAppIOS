@@ -22,7 +22,8 @@ class DataViewModel {
     
     func fetch(user: User) {
         
-        let units = user.useCelsius ? "metric" : "imperial"
+        // let units = user.useCelsius ? "metric" : "imperial"
+        let units = "metric"
         let lat = user.location.latitude
         let long = user.location.longitude
         let urlString = "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(long)&cnt=8&units=\(units)&appid=9ec235daafa8f93bad9066f04ac55f07"
