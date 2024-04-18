@@ -130,18 +130,42 @@ struct WelcomeWizardView2: View {
                         print("does photo exist?")
                         if photo != nil {
                             let color = photo?.averageColor ?? .gray
-                            
+                        
                             print("what color? \(color)")
+                            print("user.first != null? \(user.first != nil)")
+                            print("user.first: \(user.first)")
                             
                             // if we have a user in the model, set that one, otherwise put it in the welcome user
                             if user.first != nil {
+                                print("did we get here?")
                                 user[0].skincolor.set(color: color)
                             } else {
                                 welcomeUser?.skincolor.set(color: color)
+                                print("what welcome user color? \(welcomeUser?.skincolor)")
                             } // if first user exists
                             
                         }  // if photo exists
                     } // on Appear
+                    .onChange(of: photo) {
+                        print("photo changed")
+                        if photo != nil {
+                            let color = photo?.averageColor ?? .gray
+                        
+                            print("what color? \(color)")
+                            print("user.first != null? \(user.first != nil)")
+                            print("user.first: \(user.first)")
+                            
+                            // if we have a user in the model, set that one, otherwise put it in the welcome user
+                            if user.first != nil {
+                                print("did we get here?")
+                                user[0].skincolor.set(color: color)
+                            } else {
+                                welcomeUser?.skincolor.set(color: color)
+                                print("what welcome user color? \(welcomeUser?.skincolor)")
+                            } // if first user exists
+                            
+                        }  // if photo exists
+                    }
             
             ) // main overlay
             .edgesIgnoringSafeArea(.vertical)
