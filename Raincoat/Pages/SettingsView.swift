@@ -13,13 +13,11 @@ struct SettingsView: View {
     
     // @Environment(User.self) private var user: User
     @Environment(\.modelContext) private var modelContext
-    @Query private var user: [User]
+    @Query private var user: [ModelUser]
     @Environment(LocationManager.self) private var locationManager: LocationManager
     
     // params
-    @State var hotcold: Double
-    @State var useCelsius: Bool
-    @State var hairstyle: Hairstyle?
+    @State var currentSessionUser: TempUser
     @Binding var wentToSettingsReload: Bool
     
     @State private var showHairEditSheet = false
@@ -41,9 +39,9 @@ struct SettingsView: View {
                         .fontWeight(.bold)
                         .foregroundStyle(Color("OnSurface"))
                         .padding(EdgeInsets(top: 20, leading: 0, bottom: 5, trailing: 0))
-                    HotColdBlock(hotCold: $hotcold)
-                        .onChange(of: hotcold) { oldValue, newValue in
-                            user[0].hotcold = newValue
+                    HotColdBlock(currentSessionUser: currentSessionUser)
+                        .onChange(of: currentSessionUser.hotcold) { oldValue, newValue in
+                            user[0].hotcold = currentSessionUser.hotcold
                         }
                     
                     Text("General")
@@ -56,7 +54,7 @@ struct SettingsView: View {
                     NavigationLink {
                         LocationView(fromSettings: true)
                     } label: {
-                        RowSettingsButton(title: "Search a Location", value: user[0].location.shortname)
+                        RowSettingsButton(title: "Search a Location", value: currentSessionUser.location.shortname)
                     }
                     
                     // Celsius vs Farenheight
@@ -65,10 +63,10 @@ struct SettingsView: View {
                         Text("Use Celsius")
                             .foregroundStyle(Color("OnSurface"))
                         Spacer()
-                        Toggle("", isOn: $useCelsius)
+                        Toggle("", isOn: currentSessionUser.useCelsius)
                             .tint(Color("Theme"))
-                            .onChange(of: useCelsius) { oldValue, newValue in
-                                user[0].useCelsius = newValue
+                            .onChange(of: currentSessionUser.useCelsius) { oldValue, newValue in
+                                user[0].useCelsius = currentSessionUser.useCelsius
                             }
                     }
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
@@ -87,13 +85,11 @@ struct SettingsView: View {
                     } label: {
                         RowSettingsButton(
                             title: "Hair",
-                            value: "\(user[0].hair)"
+                            value: "\(currentSessionUser.hair)"
                         ) // action
                     }
                     .sheet(isPresented: $showHairEditSheet, onDismiss: {
-                        if hairstyle != nil {
-                            user[0].hair = hairstyle ?? user[0].hair
-                        }
+                        user[0].hair = currentSessionUser.hair
                     }, content: {
                         HairstyleBlock(selected: $hairstyle, secondQuestionOpacity: .constant(0))
                             .presentationDetents([.medium, .large])
@@ -179,7 +175,7 @@ struct RowSettingsButton: View {
 struct DeleteButton: View {
     
     @Environment(\.modelContext) private var modelContext
-    @Query private var user: [User]
+    @Query private var user: [ModelUser]
     
    //  @Binding var navigationPath: NavigationPath
     
@@ -207,7 +203,7 @@ struct DeleteButton: View {
                     // Handle the deletion.
                     
                     do {
-                        try modelContext.delete(model: User.self)
+                        try modelContext.delete(model: ModelUser.self)
                         // insertSampleData(modelContext: modelContext)
                         // navigationPath.append("WelcomeWizardView1")
                     } catch {

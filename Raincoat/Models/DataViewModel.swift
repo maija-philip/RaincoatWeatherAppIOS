@@ -20,7 +20,7 @@ class DataViewModel {
     
     private var task: AnyCancellable? = nil
     
-    func fetch(user: User) {
+    func fetch(user: ModelUser) {
         
         // let units = user.useCelsius ? "metric" : "imperial"
         let units = "metric"

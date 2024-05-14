@@ -18,14 +18,13 @@ struct WelcomeWizardView2: View {
     // @Environment(User.self) private var user: User
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode> // make the save button go back to the settings
     @Environment(\.modelContext) private var modelContext
-    @Query private var user: [User]
+    @Query private var user: [ModelUser]
     
     @State private var photo: UIImage? = nil
     
     // params
     @State var isWelcomeWizard: Bool
-    @State var welcomeUser: WelcomeUser?
-    @State var location: Location?
+    @State var currentSessionUser: TempUser
     
     // check if the permisions allow us to use camera, needs to be passed into Photo View
     func canWeUseCamera() -> Bool {
@@ -76,7 +75,7 @@ struct WelcomeWizardView2: View {
                         Spacer()
                         
                         /// Image with background of the generated skin color or a grey template before they have selected
-                        ImageWithSkinBehind(image: "skinPicker", welcomeUser: welcomeUser)
+                        ImageWithSkinBehind(image: "skinPicker", currentSessionUser: currentSessionUser)
                             
                         
                         Spacer()
@@ -88,10 +87,7 @@ struct WelcomeWizardView2: View {
                         /// Continue once an image has been taken
                         if isWelcomeWizard && photo != nil {
                             Button {
-                                if location != nil {
-                                    welcomeUser?.location = location ?? Location()
-                                }
-                                modelContext.insert(User(welcomeUser: welcomeUser))
+                                modelContext.insert(ModelUser(tempUser: currentSessionUser))
                             } label: {
                                 SolidTextButton(text: "Continue", buttonLevel: .primary)
                             }
@@ -107,10 +103,7 @@ struct WelcomeWizardView2: View {
                         /// skip for now and leave the skin grey option on welcome wizard
                         if isWelcomeWizard {
                             Button {
-                                if location != nil {
-                                    welcomeUser?.location = location ?? Location()
-                                }
-                                modelContext.insert(User(welcomeUser: welcomeUser))
+                                modelContext.insert(ModelUser(tempUser: currentSessionUser))
                             } label: {
                                 SolidTextButton(text: "Skip for now", buttonLevel: .tertiary)
                             }
@@ -127,45 +120,29 @@ struct WelcomeWizardView2: View {
                     .navigationTitle("")
                     .onAppear() {
                         /// if a color exists, set it to the approriate user
-                        print("does photo exist?")
                         if photo != nil {
                             let color = photo?.averageColor ?? .gray
-                        
-                            print("what color? \(color)")
-                            print("user.first != null? \(user.first != nil)")
-                            print("user.first: \(user.first)")
                             
-                            // if we have a user in the model, set that one, otherwise put it in the welcome user
-                            if user.first != nil {
-                                print("did we get here?")
+                            currentSessionUser.skincolor.set(color: color)
+                            // if we have a user in the model, set that one so that it is stored
+                            if isWelcomeWizard && user.first != nil {
                                 user[0].skincolor.set(color: color)
-                            } else {
-                                welcomeUser?.skincolor.set(color: color)
-                                print("what welcome user color? \(welcomeUser?.skincolor)")
                             } // if first user exists
                             
                         }  // if photo exists
                     } // on Appear
                     .onChange(of: photo) {
-                        print("photo changed")
                         if photo != nil {
                             let color = photo?.averageColor ?? .gray
-                        
-                            print("what color? \(color)")
-                            print("user.first != null? \(user.first != nil)")
-                            print("user.first: \(user.first)")
                             
-                            // if we have a user in the model, set that one, otherwise put it in the welcome user
-                            if user.first != nil {
-                                print("did we get here?")
+                            currentSessionUser.skincolor.set(color: color)
+                            // if we have a user in the model, set that one so that it is stored
+                            if isWelcomeWizard && user.first != nil {
                                 user[0].skincolor.set(color: color)
-                            } else {
-                                welcomeUser?.skincolor.set(color: color)
-                                print("what welcome user color? \(welcomeUser?.skincolor)")
                             } // if first user exists
                             
                         }  // if photo exists
-                    }
+                    } // onChange
             
             ) // main overlay
             .edgesIgnoringSafeArea(.vertical)
@@ -177,7 +154,7 @@ struct WelcomeWizardView2: View {
 
 #Preview {
     MainActor.assumeIsolated {
-        WelcomeWizardView2(isWelcomeWizard: false)
+        WelcomeWizardView2(isWelcomeWizard: false, currentSessionUser: TempUser())
             .environment(LocationManager())
             .modelContainer(previewContainer)
     }

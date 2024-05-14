@@ -15,7 +15,7 @@ struct LocationView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode> // make the save button go back to the settings
     // @Environment(User.self) private var user: User
     @Environment(\.modelContext) private var modelContext
-    @Query private var user: [User]
+    @Query private var user: [ModelUser]
 
     
     @State private var background = Color("TextField");

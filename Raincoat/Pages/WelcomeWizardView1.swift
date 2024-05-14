@@ -11,29 +11,27 @@ import MapKit
 
 /// This is the first screen a new user will see when they open the app, it will guide them through getting some basic data of their hair length preference and how they tend to feel hot and cold
 struct WelcomeWizardView1: View {
+       
+    // params
+    @State var currentSessionUser: TempUser
+    @State var isLocationNext: Bool
     
-    // @Environment(User.self) private var user: User
-    @Environment(\.modelContext) private var modelContext
-    @Query private var user: [User]
-    @Environment(LocationManager.self) private var locationManager: LocationManager
-    
-    @State private var hotCold: Double = 50.0
     @State private var selected: Hairstyle?
     @State private var secondQuestionOpacity: Double = 0.0
     
-    @State var isLocationNext: Bool
+    
 
     // create nav appearance
-    init (isLocationNextScreen: Bool, location: Location?) {
+    init (currentSessionUser: TempUser, isLocationNextScreen: Bool) {
         
+        self.currentSessionUser = currentSessionUser
         _isLocationNext = State(initialValue: isLocationNextScreen)
+        selected = currentSessionUser.hair
         
         // create the UINavigation bar back button appearance
         UINavigationBar.appearance().backIndicatorImage = UIImage(systemName: "arrow.backward")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.backward")
         UINavigationBar.appearance().titleTextAttributes = .none
-        
-        
         
     } // init
     
@@ -58,19 +56,19 @@ struct WelcomeWizardView1: View {
                         // Second question + continue button block
                         VStack {
                             // lets user customize how they feel hot and cold temperatures
-                            HotColdBlock(hotCold: $hotCold)
+                            HotColdBlock(currentSessionUser: currentSessionUser)
                             
                             
                             Spacer()
                             
                             /// Continue button saves their data in the user model
-                            if !isLocationNext || locationManager.location != nil {
-                                NavigationLink(destination: WelcomeWizardView2(isWelcomeWizard: true, welcomeUser: WelcomeUser(hair: selected ?? .bald, hotcold: hotCold, location:Location(mapItem: MKMapItem(placemark: MKPlacemark(coordinate: locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0))))))) {
+                            if !isLocationNext {
+                                NavigationLink(destination: WelcomeWizardView2(isWelcomeWizard: true, currentSessionUser: currentSessionUser)) {
                                     SolidTextButton(text: "Continue", buttonLevel: .primary)
                                 } // navigationLink
                                 .padding()
                             } else {
-                                NavigationLink(destination: LocationView( fromSettings: false, welcomeUser: WelcomeUser(hair: selected ?? .bald, hotcold: hotCold, location: Location()))) {
+                                NavigationLink(destination: LocationView( fromSettings: false, currentSessionUser: currentSessionUser) )) {
                                     SolidTextButton(text: "Continue", buttonLevel: .primary)
                                 } // navigationLink
                                 .padding()
@@ -98,7 +96,7 @@ struct WelcomeWizardView1: View {
 
 #Preview {
     MainActor.assumeIsolated {
-        WelcomeWizardView1(isLocationNextScreen: true, location: nil)
+        WelcomeWizardView1(currentSessionUser: TempUser(), isLocationNextScreen: true)
             .environment(LocationManager())
             .modelContainer(previewContainer)
     }
@@ -108,7 +106,13 @@ struct WelcomeWizardView1: View {
 /// Shows the user a slider where they can adjust how they feel hot vs cold
 struct HotColdBlock: View {
     
-    @Binding var hotCold : Double
+    @State var currentSessionUser : TempUser
+    @State var hotcold: Double
+    
+    init(currentSessionUser: TempUser) {
+        self.currentSessionUser = currentSessionUser
+        hotcold = currentSessionUser.hotcold
+    }
     
     var body: some View {
         // Main content
@@ -120,7 +124,7 @@ struct HotColdBlock: View {
                 .font(.title3)
             
             // slider for hot cold
-            Slider(value: $hotCold, in: 0...100)
+            Slider(value: $hotcold, in: 0...100)
                 .padding(.vertical)
                 .tint(Color("Theme"))
             

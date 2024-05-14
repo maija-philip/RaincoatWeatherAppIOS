@@ -11,9 +11,9 @@ import SwiftData
 
 /// sample user data for the preview
 class SampleData {
-    static var contents: [User] {
+    static var contents: [ModelUser] {
         [
-            User()
+            ModelUser()
         ]
     }
 } // Sample Data
@@ -24,7 +24,7 @@ let previewContainer: ModelContainer = {
     do {
         
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: User.self, configurations: config)
+        let container = try ModelContainer(for: ModelUser.self, configurations: config)
         for item in SampleData.contents {
             container.mainContext.insert(item)
         }

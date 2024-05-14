@@ -36,19 +36,19 @@ struct Test: View {
         
         weather.max = 30
         weather.min = 27
-        weather.resetTempMessage(user: User())
+        weather.resetTempMessage(user: ModelUser())
         print("\nImage: \(weather.message.image)")
         print("\(weather.message.beginning) \(weather.message.middle) \(weather.message.end)")
         
         weather.min = 20
-        weather.resetTempMessage(user: User())
+        weather.resetTempMessage(user: ModelUser())
         print("\nImage: \(weather.message.image)")
         print("\(weather.message.beginning) \(weather.message.middle) \(weather.message.end)")
         
         
         weather.max = 70
         weather.min = 57
-        let u = User()
+        let u = ModelUser()
         u.useCelsius = false
         weather.resetTempMessage(user: u)
         print("\nImage: \(weather.message.image)")

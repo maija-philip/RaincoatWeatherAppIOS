@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A824B0302AF18F500061A2ED /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824B02F2AF18F500061A2ED /* SettingsView.swift */; };
-		A833EDEB2AFA895E00F4A364 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EDEA2AFA895E00F4A364 /* User.swift */; };
+		A833EDEB2AFA895E00F4A364 /* ModelUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833EDEA2AFA895E00F4A364 /* ModelUser.swift */; };
 		A83774FE2B125D9C008E40EE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83774FD2B125D9C008E40EE /* Message.swift */; };
 		A847EFB32B02F95D004C2200 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A847EFB22B02F95D004C2200 /* Location.swift */; };
 		A84B3EB42B181C05002A8B1C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B3EB32B181C05002A8B1C /* ImagePicker.swift */; };
@@ -52,7 +52,7 @@
 /* Begin PBXFileReference section */
 		A824B02F2AF18F500061A2ED /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A8290B522B4342BE00BB7A4D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		A833EDEA2AFA895E00F4A364 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A833EDEA2AFA895E00F4A364 /* ModelUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelUser.swift; sourceTree = "<group>"; };
 		A83774FD2B125D9C008E40EE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A847EFB22B02F95D004C2200 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		A84B3EB32B181C05002A8B1C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 		A833EDE52AFA830A00F4A364 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A833EDEA2AFA895E00F4A364 /* User.swift */,
+				A833EDEA2AFA895E00F4A364 /* ModelUser.swift */,
 				A86CE72C2AFD7630007FA521 /* Weather.swift */,
 				A86CE72E2AFD7A08007FA521 /* TempRange.swift */,
 				A86CE7302AFD829C007FA521 /* WeatherStruct.swift */,
@@ -273,7 +273,7 @@
 				A89013132B095A2800CDE0E8 /* ImageWithSkinBehind.swift in Sources */,
 				A86CE72D2AFD7630007FA521 /* Weather.swift in Sources */,
 				A8DB007E2AEB3FAC00617FD4 /* SolidButton.swift in Sources */,
-				A833EDEB2AFA895E00F4A364 /* User.swift in Sources */,
+				A833EDEB2AFA895E00F4A364 /* ModelUser.swift in Sources */,
 				A88113C42B1E98F000D70301 /* LocationManager.swift in Sources */,
 				A8D7FA352AF94541004956C2 /* LocationView.swift in Sources */,
 				A85E29B82B279C0600A3BC05 /* Test.swift in Sources */,

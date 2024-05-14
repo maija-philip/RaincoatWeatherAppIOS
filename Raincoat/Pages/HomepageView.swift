@@ -9,11 +9,12 @@ import SwiftUI
 import SwiftData
 
 struct HomepageView: View {
-    // @Environment(User.self) private var user: User
-    @Environment(\.modelContext) private var modelContext
-    @Query private var user: [User]
+    
+    // @Query private var user: [ModelUser]
     @State private var dataModel = DataViewModel()
     @State private var wentToSettingsReload = false
+    
+    @State var currentSessionUser: TempUser
     
     // create nav appearance
     init () {
@@ -123,7 +124,7 @@ struct HomepageView: View {
 struct WeatherDataSection: View {
     
     @State var weather: Weather
-    @State var user: User
+    @State var user: ModelUser
     
     var body: some View {
         HStack(alignment: .top) {

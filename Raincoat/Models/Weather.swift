@@ -21,7 +21,7 @@ class Weather {
     
     var errorMessage: String = ""
     
-    init ( weatherData: WeatherSectionsStruct, user: User ) {
+    init ( weatherData: WeatherSectionsStruct, user: ModelUser ) {
         
         // gets weather in celcius
         let thisWeather = weatherData.main
@@ -40,7 +40,7 @@ class Weather {
     } // init
     
     convenience init() {
-        self.init(weatherData: WeatherSectionsStruct(main: WeatherStruct(temp: 0, feels_like: 0, temp_min: 0, temp_max: 0, humidity: 0), pop: 0), user: User())
+        self.init(weatherData: WeatherSectionsStruct(main: WeatherStruct(temp: 0, feels_like: 0, temp_min: 0, temp_max: 0, humidity: 0), pop: 0), user: ModelUser())
         errorMessage = "No weather data"
     }
     
@@ -64,12 +64,12 @@ class Weather {
         }
     }
     
-    func resetTempMessage(user: User) {
+    func resetTempMessage(user: ModelUser) {
         message = getTempMessage(user: user)
     }
     
     // get all the information the homescreen needs
-    func getTempMessage(user: User) -> Message {
+    func getTempMessage(user: ModelUser) -> Message {
         
         // prepare for the return so we can edit it throughout the function
         let message = Message()
@@ -222,7 +222,7 @@ class Weather {
         return Int((9/5) * (temp + 32))
     }
    
-    public func willSnow(user: User) -> Bool {
+    public func willSnow(user: ModelUser) -> Bool {
         if (user.useCelsius) { 
             return max < 0
         }

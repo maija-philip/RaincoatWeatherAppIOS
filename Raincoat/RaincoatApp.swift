@@ -17,7 +17,7 @@ struct RaincoatApp: App {
         WindowGroup {
             Router() //.environment(user)
                 .environment(locationManager)
-                .modelContainer(for: [User.self])
+                .modelContainer(for: [ModelUser.self])
         }
     }
 }

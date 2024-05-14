@@ -14,22 +14,27 @@ struct Router: View {
     
     // model data
     @Environment(\.modelContext) private var modelContext
-    @Query private var user: [User]
+    @Query private var user: [ModelUser]
     @Environment(LocationManager.self) private var locationManager: LocationManager
     
     var locationError : Bool { return locationManager.locationError }
     var permissionError : Bool { return locationManager.permissionsError }
     
+    @State var currentSessionUser: TempUser
+    @State var hasLocation: Bool = false
+    
     // create nav appearance
     init () {
+        
+        currentSessionUser = user.first != nil ? TempUser(modelUser: user.first) : TempUser()
+        
         // create the UINavigation bar back button appearance
         UINavigationBar.appearance().backIndicatorImage = UIImage(systemName: "arrow.backward")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.backward")
         UINavigationBar.appearance().titleTextAttributes = .none
-        
-        
-        
+    
     } // init
+    
     
     var body: some View {
     
@@ -37,33 +42,23 @@ struct Router: View {
             // show the user the homepage if they are a current user or the first page of the welcome wizard if they are a new user
             if user.first != nil {
                 VStack {
-                    HomepageView()
+                    HomepageView(currentSessionUser: currentSessionUser)
                         .navigationTitle("")
                 } // VStack HomepageView Wrapper
-                .onAppear() {
-
-                    if (!locationError && !permissionError && locationManager.location != nil) {
-                        user[0].location = Location(latitude: locationManager.location?.coordinate.latitude ?? 0, longitude: locationManager.location?.coordinate.longitude ?? 0)
-                    } // if errors
-                    
-                } // on Appear
 
             } else {
                 
-                // if there is no locaton error or permission error and we have a location
-                if !locationError && !permissionError && locationManager.location != nil {
-                    VStack {
-                        WelcomeWizardView1(isLocationNextScreen: false, location: Location(latitude: locationManager.location?.coordinate.latitude ?? 0, longitude: locationManager.location?.coordinate.longitude ?? 0))
-                            .navigationTitle("")
-                    } // VStack to wrap WelcomeWizard
-                } else {
-                    // There is no viable user location
-                    WelcomeWizardView1(isLocationNextScreen: true, location: nil)
-                        .navigationTitle("")
-                } // else location error
+                WelcomeWizardView1(currentSessionUser: currentSessionUser, isLocationNextScreen: true)
+                    .navigationTitle("")
                 
             } // else from (if user exists in model)
             
+        }
+        .onAppear() {
+            if (!locationError && !permissionError && locationManager.location != nil) {
+                currentSessionUser.location = Location(latitude: locationManager.location?.coordinate.latitude ?? 0, longitude: locationManager.location?.coordinate.longitude ?? 0)
+                hasLocation = true
+            } // if errors
         }
     } // body
 } // Router
